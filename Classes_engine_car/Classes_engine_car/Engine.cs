@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Classes_engine_car
+﻿namespace Classes_engine_car
 {
     public class Engine
     {
@@ -19,16 +13,20 @@ namespace Classes_engine_car
             _minFuel = 0;
             _maxFuel = 100;
         }
-
-        public bool TrySetFuel(int fuel)
+        public bool TryIncreaseFuel(int fuel)
         {
             if (fuel > _maxFuel || fuel < _minFuel)
             {
                 return false;
             }
 
-            _fuel = fuel;
-            return true;
+            if (_fuel + fuel <= _maxFuel)
+            {
+                _fuel += fuel;
+                return true;
+            }
+
+            return false;
         }
 
         public int GetFuel()

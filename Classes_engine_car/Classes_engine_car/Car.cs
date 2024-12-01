@@ -16,22 +16,24 @@
             }
         }
 
-        public bool FillTank(int fuel, out string reason)
+        public bool TryFillTank(int fuel)
         {
             if (_engine == null)
             {
-                reason = "Engine is null";
                 return false;
             }
 
-            if (_engine.TrySetFuel(fuel))
+            if (_engine.TryIncreaseFuel(fuel))
             {
-                reason = "All ok";
                 return true;
             }
 
-            reason = "fuel is not valid";
             return false;
+        }
+
+        public int GetFuel()
+        {
+            return _engine.GetFuel();
         }
     }
 }
